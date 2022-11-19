@@ -45,14 +45,3 @@ def register(request):
         messages.success(request,f'{user.username}:{user.alias_name} create user successful')
         return redirect('MAIN_APP:home')
     return render(request, 'register/templates/sign_up_and_in/signup.html', {})
-
-def log_in(request):
-    if request.method == 'POST':
-        username = request.POST.get('name_email')
-        password = request.POST.get('password')
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('MAIN_APP:home')
-    return render(request, 'sign_up_and_in/signin.html')
-
